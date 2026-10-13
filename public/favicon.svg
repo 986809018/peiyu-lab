@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="Peiyu Lab">
+  <defs>
+    <linearGradient id="mark" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7860ff" stop-opacity="0.45" />
+      <stop offset="1" stop-color="#3a76ff" stop-opacity="0.16" />
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="11" fill="#0c0d1a" />
+  <rect x="1.5" y="1.5" width="45" height="45" rx="9.5" fill="url(#mark)" stroke="#a394ff" stroke-opacity="0.45" stroke-width="1.5" />
+  <text x="24" y="31.5" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="-1" fill="#c6bcff">P.</text>
+</svg>
