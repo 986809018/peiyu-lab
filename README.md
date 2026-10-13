@@ -1,3 +1,10 @@
+<!--
+ * @Author: {lipeiyu}
+ * @Date: 2026-10-13 14:20:17
+ * @LastEditTime: 2026-10-13 15:11:36
+ * @LastEditors: {lipeiyu}
+ * @Description: 个人技术实验室官网
+-->
 # Peiyu Lab
 
 个人技术实验室官网 —— 单页站点，中英双语，纯静态部署。
