@@ -51,7 +51,7 @@ const translations = {
     nav: { projects: "项目", about: "关于", contact: "联系我" },
     hero: {
       eyebrow: "个人技术实验室 · 持续探索中",
-      line1: "探索技术，",
+      line1: "一起探索技术，",
       line2: "让想法成为现实。",
       description: "探索 AI、编程与数字产品，把好奇心变成真正有用的东西。",
       explore: "探索项目",
