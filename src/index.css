@@ -7,9 +7,15 @@
   --text: #f4f4fb;
   --text-dim: #a2a2b7;
   --text-faint: #77778c;
+  /* Small mono meta text. Tuned against the lightest surface it sits on
+     (the project card), where it clears WCAG AA at 5.35:1. */
+  --text-meta: #8b8ba6;
   --accent: #9d8bff;
   --accent-strong: #a394ff;
   --hairline: #ffffff10;
+
+  /* Widest the reading column is allowed to grow on large displays. */
+  --content-max: 1240px;
 
   /* Type */
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -78,6 +84,27 @@ a {
 :focus-visible {
   outline: 2px solid var(--accent-strong);
   outline-offset: 4px;
+}
+
+/* Keyboard-only entry point: parked above the viewport until it takes focus. */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1000;
+  padding: 12px 20px;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  background: var(--accent-strong);
+  color: #0b0b16;
+  font-size: var(--fs-ui);
+  font-weight: 600;
+  transform: translate(-50%, -120%);
+  transition: transform var(--dur) var(--ease);
+}
+
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

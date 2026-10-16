@@ -1,0 +1,225 @@
+<!doctype html>
+<!-- Standalone 404 page. Served by the web server for unknown paths, so it
+     deliberately carries no JavaScript and no external font request. -->
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>页面不存在 — Peiyu Lab</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#080910" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <style>
+      :root {
+        --bg: #080910;
+        --text: #f4f4fb;
+        --text-dim: #a2a2b7;
+        --text-meta: #8b8ba6;
+        --accent-strong: #a394ff;
+        --hairline: #ffffff10;
+        --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+          "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--bg);
+      }
+
+      body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        margin: 0;
+        padding: 0 22px;
+        background-color: var(--bg);
+        background-image:
+          linear-gradient(#a49aff0a 1px, transparent 1px),
+          linear-gradient(90deg, #a49aff0a 1px, transparent 1px),
+          radial-gradient(ellipse at 50% -10%, #4f3ca52b 0%, transparent 48%);
+        background-size: 48px 48px, 48px 48px, auto;
+        color: var(--text);
+        font-family: var(--font-sans);
+        line-height: 1.9;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      header,
+      main,
+      footer {
+        width: 100%;
+        max-width: 1240px;
+        margin: 0 auto;
+      }
+
+      header {
+        display: flex;
+        min-height: 92px;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        color: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 35px;
+        height: 35px;
+        place-items: center;
+        border: 1px solid #a394ff66;
+        border-radius: 11px;
+        background: linear-gradient(135deg, #7860ff33, #3a76ff12);
+        color: #c6bcff;
+        font-size: 17px;
+        letter-spacing: -0.06em;
+      }
+
+      .brand-light {
+        color: #9292a9;
+        font-weight: 400;
+      }
+
+      main {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 90px 0;
+      }
+
+      .kicker {
+        color: #8981bc;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+      }
+
+      h1 {
+        margin: 18px 0 0;
+        font-size: clamp(27px, 3.2vw, 39px);
+        font-weight: 500;
+        letter-spacing: -0.055em;
+        line-height: 1.2;
+      }
+
+      p {
+        max-width: 460px;
+        margin: 16px 0 0;
+        color: var(--text-dim);
+        font-size: 16px;
+      }
+
+      .en {
+        display: block;
+        margin-top: 6px;
+        color: var(--text-meta);
+        font-size: 14px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .button-primary,
+      .button-secondary {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 17px;
+        border-radius: 8px;
+        font-size: 12px;
+        text-decoration: none;
+        transition: transform 180ms ease, border-color 180ms ease;
+      }
+
+      .button-primary {
+        background: linear-gradient(110deg, #a293ff, #7197ff);
+        box-shadow: 0 4px 22px #8a78ff1a;
+        color: #0b0b16;
+        font-weight: 600;
+      }
+
+      .button-secondary {
+        border: 1px solid #ffffff1c;
+        color: #d4d3e4;
+      }
+
+      .button-primary:hover,
+      .button-secondary:hover {
+        transform: translateY(-2px);
+      }
+
+      footer {
+        display: flex;
+        min-height: 82px;
+        align-items: center;
+        border-top: 1px solid var(--hairline);
+        color: #77778c;
+        font-family: var(--font-mono);
+        font-size: 12px;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--accent-strong);
+        outline-offset: 4px;
+        border-radius: 5px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/" aria-label="Peiyu Lab home">
+        <span class="brand-mark" aria-hidden="true">P.</span>
+        <span>PEIYU <span class="brand-light">LAB</span></span>
+      </a>
+    </header>
+
+    <main>
+      <span class="kicker">404</span>
+      <h1>这个页面不存在。</h1>
+      <p>
+        链接可能已经失效，或者地址输入有误。
+        <span class="en" lang="en"
+          >The page you're looking for doesn't exist.</span
+        >
+      </p>
+      <div class="actions">
+        <a class="button-primary" href="/">返回首页</a>
+        <a class="button-secondary" href="mailto:hello@peiyulab.top">联系我</a>
+      </div>
+    </main>
+
+    <footer>PEIYU LAB. &nbsp;·&nbsp; 用好奇心构建。© 2026</footer>
+  </body>
+</html>

@@ -8,9 +8,11 @@
 .site-shell {
   position: relative;
   isolation: isolate;
-  /* `clip` rather than `hidden`: it contains the decorative glows horizontally
-     without creating a scroll container, which would break the sticky header. */
-  overflow-x: clip;
+  /* `clip` rather than `hidden`: it contains the decorative glows on both axes
+     without creating a scroll container, which would break the sticky header.
+     Clipping vertically too keeps the glows from stretching short pages such as
+     the 404 view. */
+  overflow: clip;
   width: 100%;
   min-height: 100vh;
   margin: 0 auto;
@@ -39,27 +41,33 @@
 }
 
 .ambient {
+  --ambient-color: #7959ff;
   position: absolute;
   z-index: -1;
   width: 440px;
   height: 440px;
   border-radius: 50%;
-  filter: blur(110px);
+  /* A radial gradient gives the same soft falloff as `blur(110px)` without the
+     per-frame filter cost. These two glows drift forever, so a filter here
+     would force a full re-blur on every frame. */
+  background: radial-gradient(circle closest-side, var(--ambient-color), transparent);
   opacity: 0.2;
   pointer-events: none;
+  /* Only the transform animates, so the drift stays on the compositor. */
+  will-change: transform;
   animation: ambient-drift 18s ease-in-out infinite alternate;
 }
 
 .ambient-one {
+  --ambient-color: #7959ff;
   top: 150px;
   right: -180px;
-  background: #7959ff;
 }
 
 .ambient-two {
+  --ambient-color: #386bff;
   top: 850px;
   left: -250px;
-  background: #386bff;
   animation-delay: -8s;
 }
 
@@ -332,7 +340,7 @@
   align-items: center;
   gap: 13px;
   margin-top: 53px;
-  color: #66667e;
+  color: var(--text-meta);
   font-size: var(--fs-mono-sm);
 }
 
@@ -448,7 +456,7 @@
 
 .section-count {
   padding-bottom: 5px;
-  color: #6e6e86;
+  color: var(--text-meta);
   font-size: var(--fs-mono);
 }
 
@@ -542,7 +550,7 @@
 }
 
 .card-number {
-  color: #65657d;
+  color: var(--text-meta);
   font-size: var(--fs-mono-sm);
 }
 
@@ -599,7 +607,7 @@
   gap: 12px;
   margin-top: 28px;
   padding-top: 23px;
-  color: #696980;
+  color: var(--text-meta);
   font-size: var(--fs-mono-sm);
 }
 
@@ -620,7 +628,14 @@
    Project detail
    ========================================= */
 
-.project-detail {
+/* The panel stays in the DOM so `aria-controls` always resolves and the copy
+   remains crawlable; `hidden` keeps it out of the accessibility tree. */
+.project-detail[hidden] {
+  display: none;
+}
+
+/* Driven by the expanded card so the reveal replays on every open. */
+.project-card.is-expanded .project-detail {
   animation: detail-reveal 260ms ease both;
 }
 
@@ -929,6 +944,38 @@
 }
 
 /* =========================================
+   Not found (soft 404)
+   ========================================= */
+
+.notfound-section {
+  display: flex;
+  min-height: 60vh;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 90px 0;
+}
+
+.notfound-section h1 {
+  margin: 18px 0 0;
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+}
+
+.notfound-section p {
+  max-width: 460px;
+  margin: 16px 0 0;
+  color: var(--text-dim);
+  font-size: var(--fs-body);
+  line-height: 1.9;
+}
+
+.notfound-section .button-primary {
+  margin-top: 30px;
+}
+
+/* =========================================
    Footer
    ========================================= */
 
@@ -956,9 +1003,11 @@
    Anchor offsets for the sticky header
    ========================================= */
 
+#main,
 #home,
 #projects,
-#about {
+#about,
+.project-card {
   scroll-margin-top: 100px;
 }
 
@@ -969,6 +1018,14 @@
 @media (min-width: 1400px) {
   .hero {
     min-height: 650px;
+  }
+}
+
+/* Cap the measure on very wide displays. At 1476px the 8% gutter and the
+   centred column line up exactly, so the switch is seamless. */
+@media (min-width: 1476px) {
+  .site-shell {
+    padding-inline: calc((100% - var(--content-max)) / 2);
   }
 }
 
@@ -1014,13 +1071,16 @@
     gap: 12px;
   }
 
+  /* The wordmark would push the full navigation past the viewport here, so the
+     mark carries the brand alone and every nav item — 项目 included — stays
+     reachable without shrinking a single touch target. */
+  .brand-wordmark {
+    display: none;
+  }
+
   .navigation {
     gap: 15px;
     font-size: 12px;
-  }
-
-  .navigation a:first-child {
-    display: none;
   }
 
   .navigation .nav-contact {
@@ -1054,25 +1114,27 @@
     font-size: var(--fs-mono-sm);
   }
 
+  /* Pulled in and scaled down so the rings stay inside the clipped shell at
+     360-430px instead of being sliced off at the right edge. */
   .orbit {
-    top: 78%;
-    left: 79%;
+    top: 76%;
+    left: 68%;
     opacity: 0.42;
   }
 
   .orbit-large {
-    width: 220px;
-    height: 220px;
+    width: 190px;
+    height: 190px;
   }
 
   .orbit-small {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
   }
 
   .orb-core {
-    top: 78%;
-    left: 79%;
+    top: 76%;
+    left: 68%;
     width: 65px;
     height: 65px;
     border-radius: 20px;
@@ -1140,9 +1202,11 @@
     padding: 22px 0;
   }
 
+  #main,
   #home,
   #projects,
-  #about {
+  #about,
+  .project-card {
     scroll-margin-top: 78px;
   }
 }
@@ -1156,7 +1220,8 @@
   .orbit-large,
   .orbit-small,
   .orb-core,
-  .project-detail {
+  .project-detail,
+  .project-card.is-expanded .project-detail {
     animation: none;
   }
 }
